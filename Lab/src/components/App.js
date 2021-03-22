@@ -8,7 +8,10 @@ import Carta from '../Carta.js';
 
 import { images } from './Imagenes.js';
 
+
 function App() {
+
+  
 
   const [cards, setCards] = useState([]);
   const [firstCard, setFirstCard] = useState({});
@@ -16,6 +19,10 @@ function App() {
 
   const [unflippedCards, setUnflippedCards] = useState([]);
   const [disabledCards, setDisabledCards] = useState([]);
+  //const [verification, setverification] = useState([]);
+
+  const [cont, setCont] = React.useState(0);
+  const [FinJuego, setFinal] = React.useState(0);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -51,18 +58,28 @@ function App() {
   const checkForMatch = () => {
     if (firstCard.name && secondCard.name) {
       const match = firstCard.name === secondCard.name;
-      match ? disableCards() : unflipCards();
+     setCont(cont + 1);
+      if (match ? disableCards() : unflipCards()){
+        setFinal(FinJuego +1);
+        if (FinJuego==9){
+          alert('Felicidades, has ganado el juego');
+          
+        }
+      }
+      //verification();
     }
   }
 
   const disableCards = () => {
     setDisabledCards([firstCard.number, secondCard.number]);
     resetCards();
+    return true;
   };
 
   const unflipCards = () => {
     setUnflippedCards([firstCard.number, secondCard.number]);
     resetCards();
+    return false;
   };
 
   const resetCards = () => {
@@ -70,10 +87,20 @@ function App() {
     setSecondCard({});
   }
 
+  /*
+  const verification = () => {
+    if (setverification(unflipCards) = Null){
+      alert('Has ganado ek juego');
+    }
+  }
+*/  
+
   return (
     <div className='app'>
       <div className='cards-container' >
-      <Header />
+      <Header 
+        cont={cont}
+      />
         {
           cards.map((card, index) => (
             <Carta

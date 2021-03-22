@@ -1,17 +1,16 @@
 import React from 'react';
 import './Header.css';
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+       }
+
     render(){
        return (
            <header>
                 <div className="titulo">Juego Memoria</div>
-                <div>
-                    <button className="boton-reiniciar">
-                        Reiniciar
-                    </button>
-                </div>
                 <div className="titulo">
-                    Intentos:
+                    Intentos: {this.props.cont}
                 </div>   
            </header>  
         );

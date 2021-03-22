@@ -8,9 +8,14 @@ const Carta = ({ name, number, frontFace, flipCard, unflippedCards, disabledCard
   const [isFlipped, setIsFlipped] = useState(false);
   const [hasEvent, setHasEvent] = useState(true);
 
-  useEffect(() => {
+  useEffect(() => {//aqui podria agregar el contador
+   // const [cont, setCont] = React.useState(0)
     if (unflippedCards.includes(number)) {
       setTimeout(() => setIsFlipped(false), 700);
+     /* setCont(cont +1)
+      if(cont == 10){
+        <Alert Success="Victoria">Felicidades, has ganado!</Alert>
+      }*/
     }
   }, [unflippedCards])
 
